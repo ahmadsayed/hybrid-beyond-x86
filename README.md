@@ -15,7 +15,9 @@ The previous introduction is trying to demonstrate why there is a need for multi
 
 ## Introducing Instruction set Architecture (ISA)
 
+The instruction set, also called ISA (instruction set architecture), is part of a computer that pertains to programming, which is more or less machine language. The instruction set provides commands to the processor to tell it what it needs to do. The instruction set consists of addressing modes, instructions, native data types, registers, memory architecture, interrupt and exception handling, and external I/O.
 
+In early 1960, IBM used to have a series of incompatible families, but with the introduction of IBM System 360, the grandparent of IBM Z/Architecture, IBM standardized their Mainframe. IBM System 360 is The	first	true	ISA	designed as a portable hardware-software interface.
 
 ## Explore commonly used ISA and the Commercial CPU
 ## Options to build multiarch container images
