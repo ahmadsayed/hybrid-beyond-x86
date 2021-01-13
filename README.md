@@ -22,7 +22,9 @@ In early 1960, IBM used to have a series of incompatible families, but with the 
 
 ## ISA landscape today
 
-Will list the CPU according to the introduction of their first generation.
+Will list some of the CPU, there is many other such as SPARC, RISC, MIPS, .. etc. 
+But here, I will list the machines that are easily accessible via owning a device or provided as a self-service on the public Cloud.
+
 ### IBM Z  
 IBM Z is the latest generation of the System/360 introduced in 1964, used exclusively in IBM Z Mainframe.
 Still, you do not need to purchase an expensive mainframe to try. IBM Cloud introduces Hyper Protect Virtual Server, https://cloud.ibm.com/catalog/services/hyper-protect-virtual-server 
@@ -37,11 +39,19 @@ Strengths: General purpose computing, the defacto standard for all software.
 Definition in Linux: i385, x86_64
 Trivia: Even Intel is the one who created x86, AMD is the one who defines x86_64, the 64-bit extension, after the limited success of IA_64 in the consumer.
 
-## Power ISA
+### Power ISA
 Developed by the AIM alliance, AIM refers to Apple, IBM, and Motorolla, to create RISC machines. PowerPC used to be the standard CPU in Apple products till 2005. PowerPC was the CPU used in many consumer products such as Playstation 3, xbox360, and Nintendo Wii
 Strengths: with IBM power 10, IBM claims its main advantage is to provide faster AI inference.
 Definition in Linux: ppc64le, ppc64
 Trivia:  Power2 was the CPU used in Deepblue, the first machine to win chess, Kasparov. Also, Power7 was the CPU behind the machine that won the first Jeopardy.
+
+### ARM
+Developed by Acorn computer, to be used in the BBC Microcomputer produced by Acorn Computers,   ARM engineer designed the CPU to be power-efficient. The goal back then is to replace the expensive ceramic package with a plastic package.
+To get your hands on a machine running ARM, hold your phone. or get a Raspberry Pi. Also, Amazon introduced ARM based servers.
+
+Strengths: Power efficiency.
+Definition in Linux: armhf, arm71, aarch64
+Trivia: according to Steve Furber, the principal designer on ARM, when they received the first chip, they tested the power consumption and found it Zero, he reviewed the wiring, thinking that the meter is not connected correctly it turned out they did not connect the CPU to the power supply at all, and it is running only on the power coming from the input signal.
 
 ## Options to build multiarch container images
 ## Explain Qemu user emulation
