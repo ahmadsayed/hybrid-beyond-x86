@@ -1,5 +1,6 @@
 # Build a Hybrid Application beyond x86, using buildah and podman
 
+This article audience mainly Cloud native engineer and architect, with  knowledge to containers and Kubernetes, the following section intented to give brief about ISA and multiarch please skip ahead to section " Options to build multiarch container images" for the technical part.
 
 ## Why do we need to consider Multiarch hybrid applications
 
