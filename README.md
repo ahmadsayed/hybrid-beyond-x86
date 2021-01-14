@@ -60,6 +60,29 @@ To get your hands on a machine running ARM, hold your phone. or get a Raspberry 
 * Trivia: according to Steve Furber, the principal designer on ARM, when they received the first chip, they tested the power consumption and found it Zero, he reviewed the wiring, thinking that the meter is not connected correctly it turned out they did not connect the CPU to the power supply at all, and it is running only on the power coming from the input signal.
 
 ## Options to build multiarch container images
+
+Now it comes to the moment of what should I do make my containerized application run on multiarch, in here will cover four different approaches 
+
+### Options 1: Do nothing it will work 
+This the most forward way to think, currently most of the application is written in Architecture agnostic language, Java for example come with slogan compile once run anywhere, also Python, Node.JS, all supported and ported to previous ISA and more.
+Bringing this to the container world should as simple as 
+
+```
+ podman run -it python python -c 'print("Hello world!")'
+```
+
+and this command will run correctly on mostly all commercial Machines, but this only possible because the python image on docker.io itself is multiarch,
+
+when running it, podman will pull the proper image that match you arch and as soon as you build a custom image as simple as 
+
+```
+FROM python
+COPY test.py .
+```
+
+It will no longer work on any other different architecture because it is a custom image, pulled and created where you run the build command
+
+
 ## Explain Qemu user emulation
 ## Testing Environment.
    * Kubernetes Cluster on ARM64 using VMware ESXi as Hypervisor
