@@ -145,7 +145,7 @@ CPU: bzip2-compressing 500 MB
     6.933 seconds
 CPU: AES-encrypting 500 MB
     0.351 seconds
-
+```
 ### Option 3: Cross Build and Cross compiling 
 
 
