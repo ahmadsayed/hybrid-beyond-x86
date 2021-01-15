@@ -110,13 +110,13 @@ So with this option we did not do any actual building for container image even t
 
 This is a no brainer option, Just simply pick the proper machine may be it sounds like an expensive idea, but still with Cloud offerings, as elaboratoed in the previous section, you can rent a machine in hourly and/or monthly rate for most commonly used CPU such as s390x, aarch64, ppc64el, and x86.
 
-Still picking a dedicated machine for build may add operational complexity, still there is an options to run on emulation on any x86 machine using qemu system. for those who do not know Qemu can emulate most of the CPU in the market, unfortunaty this option may sound attractive still emulating a compelete machine take resources, and still require additional operation, and running a compelete system in emulation will decrease the performance significantily.
+Still picking a dedicated machine for build may add operational complexity, another options to run on emulation on any x86 machine using qemu system. for those who do not know Qemu can emulate most of the CPU in the market, unfortunaty this option may sound attractive still emulating a compelete machine take resources, and still require additional operation, and running a compelete system in emulation will decrease the performance significantily.
 
 To give a sense of the performance impact of emulation find below some numbers I got from benchmarking s390x a machine on emulation vs the machine running on cloud, in this test I ran ubuntu 18.04 on s390x and benchmarked the time needed to executed different tasks.
 
-Notice that Qemu wich is fastest than Hercules still on average ~ 10 to 50 times slower than the machine provided on Cloud.
+Notice that Qemu which is fastest than Hercules still on average ~ 10 to 50 times slower than the machine provided on Cloud.
 
-#### Hercules CPU 
+#### Hercules s390x emulation 
 
 ```
 CPU: SHA256-hashing 500 MB
@@ -126,7 +126,7 @@ CPU: bzip2-compressing 500 MB
 CPU: AES-encrypting 500 MB
     19.429 seconds
 ```
-#### Qemu CPU 
+#### Qemu s390x emulation
 
 ```
 CPU: SHA256-hashing 500 MB
@@ -146,6 +146,8 @@ CPU: bzip2-compressing 500 MB
 CPU: AES-encrypting 500 MB
     0.351 seconds
 ```
+
+
 ### Option 3: Cross Build and Cross compiling 
 
 
