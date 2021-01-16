@@ -15,7 +15,8 @@ The Microcomputer CPUs started to make their way to Enterprise applications. Wit
 Public Cloud and Hyperscaler become the new normal for hosting Enterprise application, with apparent domination of x86_64 ISA from Intel Xeon and AMD EPYC. Still, the demands for specialized workloads and hosting from businesses make the public cloud provider introduce different Machines such as IBM power, IBM Z, and Amazon ARM.
 
 ### Future Kind of :).
-Nowadays, we are in the Era of 5G and IoT, with increased Edge computing demands, and we raise awareness about the environmental impact of the datacenters and increase needs. Power-efficient machines make ARM machines start to get back to the PC market and move toward Servers and Enterprise Applications.
+Nowadays, we are in the Era of 5G and IoT, with increased Edge computing demands derive the demand of Power-efficient machines, also the success of Heterogeneous computing
+introducd initially in Mobile devices, ARM machines start to get back to the PC market and move toward Servers and Enterprise Applications.
 
 The previous introduction is trying to demonstrate why there is a need for multiarch deployments; if you are building an application, asset, or even custom enterprise solution, you may still face a demand to deploy it on none x86 machines, so what is the other options we have now? before answering that just a quick detour around what is the ISA?
 
@@ -147,8 +148,74 @@ CPU: AES-encrypting 500 MB
     0.351 seconds
 ```
 
+You can bring a workable Linux machines on emulator running on decent x86, but to have a more complex distrubted with comperssion and encryption, the system with expected reasonable timeouts, will be a quiet challenge.
 
 ### Option 3: Cross Build and Cross compiling 
+
+In this option we tell buildah, to override the architecture of the image, with the expected target architecutre which means buildah please build me an image but bring the binaries for this specific architecture, so in that case the 
+
+The Dockerfile will be the same 
+
+```
+FROM python
+```
+
+The build command will be slightly changes to explicity mention the target architecture
+
+```
+buildah build-using-dockerfile --override-arch arm64  -t ahmadhassan83/simplypyarm  .
+```
+
+try running this docker in the same x86 machine that is used to build it will led to 
+
+```
+standard_init_linux.go:219: exec user process caused: exec format error
+```
+
+Meanwhile pulling and running this container in Arm machine will run successfully.
+
+for compiled language such as c,c++ and golang, similar approach can be taken by using gcc cross compiler
+
+for this sample will write a simple c code 
+
+```
+#include <stdio.h>
+
+int main() {
+   printf("Hello World!\n");
+   return 0;
+}
+```
+
+cross compile it for aarch64 (ARM 64)
+
+```
+aarch64-linux-gnu-gcc test.c -o test.aarch64
+```
+
+Note:  you need to install cross  compiler on your x86 in case of ubuntu run this command 
+```
+sudo apt-get install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+```
+Note: .aarch64 does not have any significate meaning just to ease dealing with multiple binaries 
+
+Then  create a docker file that copy the compiled binary 
+
+```
+FROM ubuntu
+COPY test.aarch64 /usr/bin/test
+CMD ["test"]
+```
+
+Then run buildah and podman push 
+
+```
+buildah build-using-dockerfile --override-arch arm64  -t ahmadhassan83/simplec  .
+podman push ahmadhassan83/simplec
+```
+
+
+As expeted testing this docker on the build machine x86 will not work, but testing it on ARM64 machine will work without issues.
 
 
 
