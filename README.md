@@ -273,6 +273,18 @@ Also a bouns point no need to install mutlipe cross compilers, and deal with env
 
 
 ## Testing Environment.
+
+Now it is time to put all of those theories and simple couple of liner hello world to more realstic test, will build a microservices that expose a rest API, and this rest api query a Mysql DB, to get information.
+
+This microservices will be deployed on Kubernetes and connected to Mysql DB on the same enviroment.
+
+What we are trying to achieve, will build a mutliarch version of this microservices and deploy it in both x86 and aarch46, also enable replication between mysql installed on aarch46 primary, and x86 slave.
+
+The code for this rest API will be available in this [github](https://raw.githubusercontent.com/ahmadsayed/hybrid-beyond-x86/main/rest.c)
+
+It is written in C, for this code I will use option 4, and will compile the code within the buildah, for simplicity will run it in the same container image.
+
+
    * Kubernetes Cluster on ARM64 using VMware ESXi as Hypervisor
    * Mysql on ARM64 on Arm64 Virtual Machines
    * Single node Kubernetes Cluster and Mysql on x86 VM
