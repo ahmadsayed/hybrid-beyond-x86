@@ -44,7 +44,7 @@ which gives access to IBM Z Machines running Linux One.
 Developed by Intel and currently produced mainly by Intel and AMD, it provides a large family of processors covering a broad spectrum of mobility, laptop, workstation, and High-Performance Servers.
 * Strengths: General purpose computing, the defacto standard for all software.
 * Definition in Linux: i385, x86_64
-* Trivia: Even Intel is the one who created x86, AMD is the one who defines x86_64, the 64-bit extension, after the limited success of IA_64 in the consumer.
+* Trivia: Even Intel is the one who created x86,and licensed to other companies such as AMD and Cyrix, AMD is the one who defines x86_64, the 64-bit extension, after the limited success of IA_64 in the consumer, and intel ended up license AMD64 from AMD.
 
 ### Power ISA
 Developed by the AIM alliance, AIM refers to Apple, IBM, and Motorolla, to create RISC machines. PowerPC used to be the standard CPU in Apple products till 2005. PowerPC was the CPU used in many consumer products such as Playstation 3, xbox360, and Nintendo Wii, currently it is part of OpenPower Foundation and is introduced in IBM pSeries servers, also it is available on  IBM public cloud as PAYGO self services virtual servers.[https://cloud.ibm.com/catalog/services/power-systems-virtual-server]
@@ -53,12 +53,12 @@ Developed by the AIM alliance, AIM refers to Apple, IBM, and Motorolla, to creat
 * Trivia:  Power2 was the CPU used in Deepblue, the first machine to win chess, Kasparov. Also, Power7 was the CPU behind the machine that won the first Jeopardy.
 
 ### ARM
-Developed by Acorn computer, to be used in the BBC Microcomputer produced by Acorn Computers,   ARM engineer designed the CPU to be power-efficient. The goal back then is to replace the expensive ceramic package with a plastic package.
+Developed by Acorn computer, to be used in the BBC Microcomputer produced by Acorn Computers,   ARM engineer designed the CPU to be power-efficient. The goal back then is to replace the expensive ceramic package and heatsink with a cheaper plastic package.
 To get your hands on a machine running ARM, hold your phone. or get a Raspberry Pi. Also, Amazon EC2 based ARM Graviton. [https://aws.amazon.com/blogs/aws/new-ec2-instances-a1-powered-by-arm-based-aws-graviton-processors/]
 
 * Strengths: Power efficiency.
 * Definition in Linux: armhf, arm71, aarch64
-* Trivia: according to Steve Furber, the principal designer on ARM, when they received the first chip, they tested the power consumption and found it Zero, he reviewed the wiring, thinking that the meter is not connected correctly it turned out they did not connect the CPU to the power supply at all, and it is running only on the power coming from the input signal.
+* Trivia: according to Steve Furber, the principal designer on ARM, when they received the first chip, they tested the power consumption and found it Zero, he reviewed the wiring, thinking that the meter is not connected correctly it turned out they did not connect the CPU to the power supply at all, because of faulty board, and it is running only on the power coming from the input signal.
 
 ## Options to build multiarch container images
 
