@@ -32,6 +32,8 @@ In early 1960, IBM used to have a series of incompatible families, but with the 
 Will list some of the CPU, there is many other such as SPARC, RISC, MIPS, .. etc. 
 But here, I will list the machines that are easily accessible via owning a device or provided as a self-service on the public Cloud.
 
+Note Definition in Linux on what comes when you execute "uname -m", for those ISA that is used within this article there are other names for different generation, not the scope to cover them here.
+
 ### IBM Z  
 IBM Z is the latest generation of the System/360 introduced in 1964, currently used in IBM Z Mainframe.
 Still, you do not need to purchase an expensive mainframe to try. IBM Cloud introduces Hyper Protect Virtual Server, https://cloud.ibm.com/catalog/services/hyper-protect-virtual-server 
@@ -43,13 +45,13 @@ which gives access to IBM Z Machines running Linux One.
 ### x86
 Developed by Intel and currently produced mainly by Intel and AMD, it provides a large family of processors covering a broad spectrum of mobility, laptop, workstation, and High-Performance Servers.
 * Strengths: General purpose computing, the defacto standard for all software.
-* Definition in Linux: i385, x86_64
+* Definition in Linux:  x86_64
 * Trivia: Even Intel is the one who created x86,and licensed to other companies such as AMD and Cyrix, AMD is the one who defines x86_64, the 64-bit extension, after the limited success of IA_64 in the consumer, and intel ended up license AMD64 from AMD.
 
 ### Power ISA
 Developed by the AIM alliance, AIM refers to Apple, IBM, and Motorolla, to create RISC machines. PowerPC used to be the standard CPU in Apple products till 2005. PowerPC was the CPU used in many consumer products such as Playstation 3, xbox360, and Nintendo Wii, currently it is part of OpenPower Foundation and is introduced in IBM pSeries servers, also it is available on  IBM public cloud as PAYGO self services virtual servers.[https://cloud.ibm.com/catalog/services/power-systems-virtual-server]
 * Strengths: with IBM power 10, IBM claims its main advantage is to provide faster AI inference.
-* Definition in Linux: ppc64le, ppc64
+* Definition in Linux: ppc64el
 * Trivia:  Power2 was the CPU used in Deepblue, the first machine to win chess, Kasparov. Also, Power7 was the CPU behind the machine that won the first Jeopardy.
 
 ### ARM
@@ -57,7 +59,7 @@ Developed by Acorn computer, to be used in the BBC Microcomputer produced by Aco
 To get your hands on a machine running ARM, hold your phone. or get a Raspberry Pi. Also, Amazon EC2 based ARM Graviton. [https://aws.amazon.com/blogs/aws/new-ec2-instances-a1-powered-by-arm-based-aws-graviton-processors/]
 
 * Strengths: Power efficiency.
-* Definition in Linux: armhf, arm71, aarch64
+* Definition in Linux: aarch64
 * Trivia: according to Steve Furber, the principal designer on ARM, when they received the first chip, they tested the power consumption and found it Zero, he reviewed the wiring, thinking that the meter is not connected correctly it turned out they did not connect the CPU to the power supply at all, because of faulty board, and it is running only on the power coming from the input signal.
 
 ## Options to build multiarch container images
@@ -214,10 +216,42 @@ buildah build-using-dockerfile --override-arch arm64  -t ahmadhassan83/simplec  
 podman push ahmadhassan83/simplec
 ```
 
-
 As expeted testing this docker on the build machine x86 will not work, but testing it on ARM64 machine will work without issues.
 
+This approach sounds it solve it, even if when using compiled language, cross compiler came to the rescue, but this apply for over simplistic Docker operation, to add one level of complexity such as excuting a command such chmod, or install additional package using yum or apt, it will ends up failure of building the container image.
 
+For example if the Dockerfile will look like this 
+
+```
+FROM ubuntu
+COPY test.aarch64 /usr/bin/test
+RUN chmod 777 /usr/bin/test
+CMD ["test"]
+```
+
+we already cross compiled our C code, but we need to chmod the binary, if we try buildah with target arm64 on x86 build machine here is what will happen
+
+```
+ahmed@ubuntu:~/simple$ buildah build-using-dockerfile --override-arch arm64  -t ahmadhassan83/simplec  .
+STEP 1: FROM ubuntu
+Getting image source signatures
+Copying blob a970164f39c1 skipped: already exists  
+Copying blob e9c66f1fb5a2 skipped: already exists  
+Copying blob 94362ba2c285 [--------------------------------------] 0.0b / 0.0b
+Copying config 1c28a15891 done  
+Writing manifest to image destination
+Storing signatures
+STEP 2: COPY test.aarch64 /usr/bin/test
+STEP 3: RUN chmod 777 /usr/bin/test
+standard_init_linux.go:211: exec user process caused "exec format error"
+error building at STEP "RUN chmod 777 /usr/bin/test": error while running runtime: exit status 1
+ERRO exit status 1 
+```
+
+Again exec format error, because buildah uses runc to run a binary within the image, this binary is aarch46 binary, so it is not executable, in order to make this buildah run on x86 build machine we get back that to option 2, or emulators or Proceed with Option 4
+
+
+### Option 4: Qemu user space emulation
 
 ## Explain Qemu user emulation
 ## Testing Environment.
