@@ -253,7 +253,25 @@ Again exec format error, because buildah uses runc to run a binary within the im
 
 ### Option 4: Qemu user space emulation
 
-## Explain Qemu user emulation
+Before proceeding with this option, we need to talk about user space emulation, in option 2 we mentioned QEMU as system emulator,  but QEMU has another mode of operation which user emulation this mode run for specific OS and qemu support two hosts qemu-linux-user and qemu-bsd-user.
+with this mode Qemu emulate only the CPU to translate the machine foriegn code and fix the syscalls parameters for endianess for example, then send to the native host kernel. This mode may be similar to the virtual machines concept in Java.
+
+It is still emulation, but still relatively faster and no need to build, maintain and operate compelete emulated system, also this setup will not only help with building the container image, it also run and test on your x86 build machine to execute unit testing or smoke testing.
+
+to enable this mode will run a very special container (https://github.com/multiarch/qemu-user-static)
+
+```
+sudo podman run --rm --privileged multiarch/qemu-user-static --reset -p yes
+```
+
+With this command all previous failed commands will run seamlessly, this containers utilize two tools qemu-linux-user and another Linux capabilities called [binfmt_misc](https://en.wikipedia.org/wiki/Binfmt_misc). binfmt_misc according to wikipedia,  a capability of the Linux kernel which allows arbitrary executable file formats to be recognized and passed to certain user space applications, such as emulators and virtual machines. It is one of a number of binary format handlers in the kernel that are involved in preparing a user-space program to run.
+In our case the emulator will qemu-linux-user.
+
+This options have additional advantage when it comes to compiled language, no need even to cross compile compilation can be part of the container image itself or spawn a dedicated containers for compiling. why this important, compiling a binaries during the linker for cross compiling you need to have all binaries and dependcies, having a container image with the compitable OS during the compiling will significatnly simply the build process.
+
+Also a bouns point no need to install mutlipe cross compilers, and deal with enviroment variables, the build file will be the same for all targets, like it runs on the native machine.
+
+
 ## Testing Environment.
    * Kubernetes Cluster on ARM64 using VMware ESXi as Hypervisor
    * Mysql on ARM64 on Arm64 Virtual Machines
