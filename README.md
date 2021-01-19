@@ -274,6 +274,8 @@ Also a bouns point no need to install mutlipe cross compilers, and deal with env
 
 ## Testing Environment.
 
+![env](img/ops.png)
+
 Now it is time to put all of those theories and simple couple of liner hello world to more realstic test, will build a microservices that expose a rest API, and this rest api query a Mysql DB, to get information.
 
 This microservices will be deployed on Kubernetes and connected to Mysql DB on the same enviroment.
