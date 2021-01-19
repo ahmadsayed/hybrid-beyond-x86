@@ -341,6 +341,13 @@ docker buildx build --platform linux/arm64,linux/amd64   --tag ahmadhassan83/mya
 
 ## Demo
 
+### Raspberry PI 4 running VMware ESXi.
+
 ![ARM](img/banana-to-scale.png)
-   * Show how to build a multiarch container image using qemu-user-static
-   * Show how MySQL replication happens between different Arch
+
+
+
+### VMware Esxi Cluster
+
+![snapshot](img/snapshot.png)
+
