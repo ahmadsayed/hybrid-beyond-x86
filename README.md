@@ -288,6 +288,55 @@ It is written in C, for this code I will use option 4, and will compile the code
    * Kubernetes Cluster on ARM64 using VMware ESXi as Hypervisor
    * Mysql on ARM64 on Arm64 Virtual Machines
    * Single node Kubernetes Cluster and Mysql on x86 VM
+   
+Now we are on the fork of choosing two options continue with buildah or move to another tool called buildx, so will start with buildah
+
+For Buildah to bbuild a mutliarch container image we need to do the following steps
+- Build the container image for AMD64 and ARM64
+- Push the container image to Docker Hub.
+- Create a manifest
+- Push the manifest
+
+Those steps can be done with the following list of commands
+
+```
+buildah bud --override-arch amd64 --os linux/amd64 -t ahmadhassan83/rest-arm64 .
+buildah bud --override-arch amd64 --os linux/amd64 -t ahmadhassan83/rest-amd64 .
+podman push ahmadhassan83/rest-arm64
+podman push ahmadhassan83/rest-amd64
+
+podman manifest create offeringapp
+podman manifest add --arch arm64 offeringapp ahmadhassan83/rest-arm64
+podman manifest add --arch amd64 offeringapp ahmadhassan83/rest-amd64
+podman manifest push --all offeringapp docker://docker.io/ahmadhassan83/offeringapp:latest
+```
+
+This seems to work fine, but for some reason it gives an error when trying to run it on k3s a kubernetes with containerd
+```
+archive/tar: invalid tar header: unknown
+```
+
+I did not do enough investigation but looks like it is some issue in buildah (https://bugzilla.redhat.com/show_bug.cgi?id=1826559)
+
+
+Moving forward we got the idea, from now will use a new tool provided by Docker called buildx, this tool make all previous steps but with docker and what is interesting about this tool  no need manipulate the manifestt.
+
+In order to run this tool to install docker and buildx plugins , then proceed with qemu-user-static and then proceed with initial  one time setup
+
+```
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+docker buildx create  --name mybuilder
+docker buildx use mybuilder
+docker buildx inspect --bootstrap
+```
+
+Then for build all what is needed is one line
+
+```
+docker buildx build --platform linux/arm64,linux/amd64   --tag ahmadhassan83/myapprest . --push
+```
+
+
 ## Demo
    * Show how to build a multiarch container image using qemu-user-static
    * Show how MySQL replication happens between different Arch
