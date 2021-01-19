@@ -340,5 +340,7 @@ docker buildx build --platform linux/arm64,linux/amd64   --tag ahmadhassan83/mya
 
 
 ## Demo
+
+![ARM](img/banana-to-scale.png)
    * Show how to build a multiarch container image using qemu-user-static
    * Show how MySQL replication happens between different Arch
