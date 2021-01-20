@@ -286,9 +286,16 @@ This microservices will be deployed on Kubernetes and connected to Mysql DB on t
 What we are trying to achieve, will build a mutliarch version of this microservices and deploy it in both x86 and aarch46, also enable replication between mysql installed on aarch46 primary, and x86 slave.
 
 The code for this rest API will be available in this [github](https://raw.githubusercontent.com/ahmadsayed/hybrid-beyond-x86/main/rest.c)
-Also the Dockerfile used to build and create this Rest API
-```
+Also the Dockerfile used to build and create this Restful APU Microservices
 
+```  
+FROM ubuntu
+RUN apt update
+RUN apt -y  install default-libmysqlclient-dev   libulfius-dev uwsc  gcc
+COPY rest.c /root
+WORKDIR /root
+RUN gcc rest.c -o rest  -L/usr/lib/`uname -m`-linux-gnu/libulfius.so -lulfius  `mysql_config --cflags --libs`
+ENTRYPOINT  ["/root/rest"]
 ```
 
 It is written in C, for this code I will use option 4, and will compile the code within the buildah, for simplicity will run it in the same container image.
