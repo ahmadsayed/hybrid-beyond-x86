@@ -338,6 +338,16 @@ Then for build all what is needed is one line
 docker buildx build --platform linux/arm64,linux/amd64   --tag ahmadhassan83/myapprest . --push
 ```
 
+### Handling Databases
+
+For this use case will use Mysql as databases, the setup for master slave configuration is taken straigh a head from this [tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-master-slave-replication-in-mysql).
+
+The only modification we have in here is that one DB instances running on ARM64 and second DB running is Slave running on x86.
+This will introduce another interesting use case for AI and Analytics in CQRS[https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs], architecture pattern 
+
+In this Pattern the DB replicated to read-only replica for other use cases, so noticing the different advantage provided by different architectures, for example replicating the Data to Z machine for intensive IO operation, or to P Machine for AI and analytics.
+
+
 
 ## Demo
 
