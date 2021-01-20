@@ -4,7 +4,7 @@ This article audience mainly Cloud native engineer and architect, with  knowledg
 
 ## Why do we need to consider Multiarch hybrid applications
 
-The simple answer let us put everything on x86 and go with it, the answer to that needs a look at past, present and the futur.
+The simple answer let us put everything on x86 and go with it, the answer to that needs a look at past, present and the future.
 
 ### Past
 Enterprises and Large system used to run on Mainframe, a large computer with a large amount of memory, but with increasing Personal Computer (a.k.a) Microcomputer, more CPU started to Mass produced to fit inside a box that lay on the Desktop.
