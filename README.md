@@ -365,6 +365,12 @@ This will introduce another interesting use case for AI and Analytics in CQRS[ht
 
 In this Pattern the DB replicated to read-only replica for other use cases, so noticing the different advantage provided by different architectures, for example replicating the Data to Z machine for intensive IO operation, or to P Machine for AI and analytics.
 
+## Conclusion
+
+The goal of this is to highlight that, Hybrid and multi Cloud patterns is not only about utilizing mutliple cloud provider or putting your workload on your data center and burst to cloud, it can be extended to different CPU architecture, like each cloud provider has its own advantage, each Machine and ISA has its own advantage.
+
+Machines such as Z, Power and ARM even accessible as PAYGO and self services model, you can pick and try from public cloud provider, same as x86 machines.
+
 
 
 ## Demo
