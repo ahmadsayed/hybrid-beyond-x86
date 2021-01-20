@@ -69,6 +69,10 @@ To get your hands on a machine running ARM, hold your phone. or get a Raspberry 
 
 Now it comes to the moment of what should I do make my containerized application run on multiarch, in here will cover four different approaches 
 
+- Do nothing it will work
+- Build everything on its own dedicated machine
+- Cross Build and Cross compiling 
+- User space emulation
 ### Options 1: Do nothing it will work 
 This the most forward way to think, currently most of the application is written in Architecture agnostic language, Java for example come with slogan compile once run anywhere, also Python, Node.JS, all supported and ported to previous ISA and more.
 Bringing this to the container world should as simple as 
@@ -254,7 +258,7 @@ ERRO exit status 1
 Again exec format error, because buildah uses runc to run a binary within the image, this binary is aarch46 binary, so it is not executable, in order to make this buildah run on x86 build machine we get back that to option 2, or emulators or Proceed with Option 4
 
 
-### Option 4: Qemu user space emulation
+### Option 4: User space emulation
 
 Before proceeding with this option, we need to talk about user space emulation, in option 2 we mentioned QEMU as system emulator,  but QEMU has another mode of operation which user emulation this mode run for specific OS and qemu support two hosts qemu-linux-user and qemu-bsd-user.
 with this mode Qemu emulate only the CPU to translate the machine foriegn code and fix the syscalls parameters for endianess for example, then send to the native host kernel. This mode may be similar to the virtual machines concept in Java.
