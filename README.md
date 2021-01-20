@@ -56,6 +56,7 @@ Developed by the AIM alliance, AIM refers to Apple, IBM, and Motorolla, to creat
 * Definition in Linux: ppc64el
 * Trivia:  Power2 was the CPU used in Deepblue, the first machine to win chess, Kasparov. Also, Power7 was the CPU behind the machine that won the first Jeopardy.
 
+![watson](https://i.ytimg.com/vi/P18EdAKuC1U/maxresdefault.jpg)
 ### ARM
 Developed by Acorn computer, to be used in the BBC Microcomputer produced by Acorn Computers,   ARM engineer designed the CPU to be power-efficient. The goal back then is to replace the expensive ceramic package and heatsink with a cheaper plastic package.
 To get your hands on a machine running ARM, hold your phone. or get a Raspberry Pi. Also, Amazon EC2 based ARM Graviton. [https://aws.amazon.com/blogs/aws/new-ec2-instances-a1-powered-by-arm-based-aws-graviton-processors/]
@@ -353,13 +354,16 @@ In this Pattern the DB replicated to read-only replica for other use cases, so n
 
 ## Demo
 
-### Raspberry PI 4 running VMware ESXi.
+#### Raspberry PI 4 running VMware ESXi.
 
 ![ARM](img/banana-to-scale.png)
 
 
 
-### VMware Esxi Cluster
+#### VMware Esxi Cluster
 
 ![snapshot](img/snapshot.png)
 
+#### Using Lens IDE to Manage and operate two Kubernetes Clusters on x86 and ARM64
+
+![Lens](img/lens.png)
