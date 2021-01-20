@@ -10,9 +10,11 @@ The simple answer let us put everything on x86 and go with it, the answer to tha
 Enterprises and Large system used to run on Mainframe, a large computer with a large amount of memory, but with increasing Personal Computer (a.k.a) Microcomputer, more CPU started to Mass produced to fit inside a box that lay on the Desktop.
 
 The Microcomputer CPUs started to make their way to Enterprise applications. With the introduction of the distributed system, the x86 machines began to dominate the Enterprise applications with distributed systems' success. Stewart Alsop II famously predicted that the last Mainframe would be unplugged on March 15, 1996. This prediction turns out to be very wrong with IBM introducing IBM Z15 in September 2020. IBM Z and Mainframe turns out to be very much alive and striving. Running a Legacy application very reliable, and the Mainframe is packed with considerable computing power in a small footprint compared to distributed x86_64 systems.
+![IBM360](https://media3.s-nbcnews.com/j/newscms/2014_19/432091/140509-ibm-360-mn-1120_389febddf130d37b7293f5406ad49307.nbcnews-fp-1200-630.jpg)
 
 ### Present
 Public Cloud and Hyperscaler become the new normal for hosting Enterprise application, with apparent domination of x86_64 ISA from Intel Xeon and AMD EPYC. Still, the demands for specialized workloads and hosting from businesses make the public cloud provider introduce different Machines such as IBM power, IBM Z, and Amazon ARM.
+![AMDvsIntel](https://i0.wp.com/laptopmedia.com/wp-content/uploads/2020/11/amdvsintel-1.jpg)
 
 ### Future Kind of :).
 Nowadays, we are in the Era of 5G and IoT, with increased Edge computing demands derive the demand of Power-efficient machines, also the success of Heterogeneous computing
