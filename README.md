@@ -124,7 +124,7 @@ Still picking a dedicated machine for build may add operational complexity, anot
 
 To give a sense of the performance impact of emulation find below some numbers I got from benchmarking s390x a machine on emulation vs the machine running on cloud, in this test I ran ubuntu 18.04 on s390x and benchmarked the time needed to executed different tasks.
 
-Notice that Qemu which is fastest than Hercules still on average ~ 10 to 50 times slower than the machine provided on Cloud.
+Notice that Qemu which is faster than Hercules still on average ~ 10 to 50 times slower than the machine provided on Cloud.
 
 #### Hercules s390x emulation 
 
@@ -339,7 +339,7 @@ archive/tar: invalid tar header: unknown
 I did not do enough investigation but looks like it is some issue in buildah (https://bugzilla.redhat.com/show_bug.cgi?id=1826559)
 
 
-Moving forward we got the idea, from now will use a new tool provided by Docker called buildx, this tool make all previous steps but with docker and what is interesting about this tool  no need manipulate the manifestt.
+Moving forward we got the idea, from now will use a new tool provided by Docker called buildx, this tool make all previous steps but with docker and what is interesting about this tool no need manully manipulate the manifest or build images and add them.
 
 In order to run this tool to install docker and buildx plugins , then proceed with qemu-user-static and then proceed with initial  one time setup
 
