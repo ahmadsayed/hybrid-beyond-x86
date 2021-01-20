@@ -10,7 +10,7 @@
 #include <ulfius.h>
 #include <mysql.h>
 #include <string.h>
-
+#include <unistd.h>
 #define PORT 8080
 
 void finish_with_errors(MYSQL *con, struct _u_response * response) {
@@ -29,7 +29,7 @@ int callback_hello_world (const struct _u_request * request, struct _u_response 
     ulfius_set_string_body_response(response, 500, "DB Connection Error");
     return U_CALLBACK_CONTINUE;
   }
-  if (mysql_real_connect(con, "192.168.1.97", "ahmed", "Abc2020$Abc2020$", "14in4", 0, NULL, 0) == NULL) {
+  if (mysql_real_connect(con, "mysql-svc", "ahmed", "Abc2020$Abc2020$", "14in4", 0, NULL, 0) == NULL) {
     printf("%s\n", mysql_error(con));
     mysql_close(con);
     ulfius_set_string_body_response(response, 500, "DB Connection Error");
@@ -104,7 +104,7 @@ int main(void) {
     printf("Start framework on port %d\n", instance.port);
 
     // Wait for the user to press <enter> on the console to quit the application
-    getchar();
+    while (1) sleep(1);
   } else {
     fprintf(stderr, "Error starting framework\n");
   }
