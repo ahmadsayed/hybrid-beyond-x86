@@ -26,5 +26,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+         name: Build with buildx
+         run: |
+           docker buildx build --platform linux/arm64,linux/amd64   --tag ahmadhassan83/myapprest . --push
 
            
