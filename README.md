@@ -14,7 +14,7 @@ The Microcomputer CPUs started to make their way to Enterprise applications. Wit
 
 ### Present
 Public Cloud and Hyperscaler become the new normal for hosting Enterprise application, with apparent domination of x86_64 ISA from Intel Xeon and AMD EPYC. Still, the demands for specialized workloads and hosting from businesses make the public cloud provider introduce different Machines such as IBM power, IBM Z, and Amazon ARM.
-![AMDvsIntel](https://i0.wp.com/laptopmedia.com/wp-content/uploads/2020/11/amdvsintel-1.jpg)
+![AMDvsIntel](https://www.extremeit.com/wp-content/uploads/2018/11/epyc-vs-xeon-742x382.jpg)
 
 ### Future Kind of :).
 Nowadays, we are in the Era of 5G and IoT, with increased Edge computing demands derive the demand of Power-efficient machines, also the success of Heterogeneous computing
