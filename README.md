@@ -365,6 +365,52 @@ This will introduce another interesting use case for AI and Analytics in CQRS[ht
 
 In this Pattern the DB replicated to read-only replica for other use cases, so noticing the different advantage provided by different architectures, for example replicating the Data to Z machine for intensive IO operation, or to P Machine for AI and analytics.
 
+## Automated Pipeline using github actions.
+
+Last but not least there are many tools that help with doing build automation, in the scope of this article will go with github actions, it provides integration with container registry such as dockerub, github container registery.
+
+
+```
+name: ci
+
+on:
+  push:
+
+jobs:
+  buildx:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      -
+        name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Available platforms
+        run: echo ${{ steps.buildx.outputs.platforms }}
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+         name: Build with buildx
+         run: |
+           docker buildx build --platform linux/arm64,linux/amd64   --tag ahmadhassan83/myapprest . --push
+```
+
+
+As soon as you push the code, github workflow triggered a multiarch build
+
+
+![build](img/buildx.png)
+
 ## Conclusion
 
 The goal of this is to highlight that, Hybrid and multi Cloud patterns is not only about utilizing mutliple cloud provider or putting your workload on your data center and burst to cloud, it can be extended to different CPU architecture, like each cloud provider has its own advantage, each Machine and ISA has its own advantage.
