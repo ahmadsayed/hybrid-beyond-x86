@@ -9,7 +9,7 @@ jobs:
     steps:
       - shell: sh
         env: 
-          USERNAME:  ${{ DOCKERHUB_USERNAME }} 
+          USERNAME:  ${{ secrets.DOCKERHUB_USERNAME }} 
         run: |
           echo  "%USENAME"
       -
