@@ -5,6 +5,7 @@ This article audience mainly Cloud-native engineer and architect with knowledge 
 ## Why do we need to consider Multiarch hybrid applications
 
 IBM put Multiarchitecture development as on of the 6 Developer trends to watch in 2021
+
 https://developer.ibm.com/blogs/6-developer-trends-to-watch-in-2021/
 
 The simple answer let us put everything on x86 and go with it. The answer to that needs a look at past, present, and the future.
