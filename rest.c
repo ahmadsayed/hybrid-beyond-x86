@@ -14,6 +14,7 @@
 #define PORT 8080
 
 void finish_with_errors(MYSQL *con, struct _u_response * response) {
+  /* Hello */
   printf("%s\n", mysql_error(con));
   mysql_close(con);
   ulfius_set_string_body_response(response, 500, "DB Connection Error");
